@@ -1,0 +1,971 @@
+AWS Notes
+=========
+
+===============
+Cloud Computing
+===============
+-> It is the on demand delivery of IT resources such as networking, Storage, Server, DB etc..
+
+The essential resources of IT :-
+--------------------------------
+1. Networking
+2. Storage
+3. Server
+
+Before Cloud:-
+--------------
+-> You buy
+-> You Install
+-> You Maintain
+These types of infrastructure are called on premises.
+
+Disadvantage of On premises:-
+-----------------------------
+-> High Capital expense required.
+-> Higher maintenance.
+-> Scaling is limited (No. of server).
+-> Low flexibility
+-> Both hardware and software have to be managed
+-> High Operational expenses
+
+Advantages of cloud:-
+---------------------
+-> Zero capital expenses
+-> Pay as you use
+-> Zero maintenance but less running cost
+-> Unlimited scaling
+-> More Flexibility
+-> No managing issue
+-> No operational expenses
+
+Disadvantage of cloud:-
+------------------------
+-> Internet connectivity issue
+
+==============
+6 piler of AWS
+==============
+1. Operational Excellence
+2. Security
+3. Reliability
+4. Perform efficiency
+5. Cost Optimization
+6. Sustainability
+
+1. Operational Excellence:-
+-> Keep your app running smoothly
+-> Monitor performance and errors
+-> Learn from mistake to improve
+-> Expect and prepare for failure
+-> Learn from mistake to improve
+Treat operation like part of your code, keep learning, fix it, improve and update daily.
+
+2. Security:-
+-> Use strong password and permission.
+-> Monitor log and actions.
+-> Encrypt data when sent and stored
+-> Automate security check
+-> Alert of security incident like hacking attempt
+Watch everything and be ready to respond if anything goes wrong
+
+3. Reliability:-
+-> Auto fix problems
+-> Test system recovers when fails
+-> Scale resources as need
+-> Handle change safely
+-> Design system to survive failure automate
+Build system so it heals itself, can frow easily and doesn't crash when one part fails.
+
+4. Perform efficiency:-
+-> Use new technology and right tools
+-> Deploy globally in less time
+-> Use serverless to save effort
+-> Try new things
+-> Optimize hardware and software performance
+use just the right amount of power to run fast, not too much, not too little
+
+5. Cost Optimization:-
+-> Track manage budget
+-> Pay only for what you use
+-> Use cheaper option when possible
+-> Avoid managing unnecessary infrastructure
+-> Review costs to save money
+Only pay for what you need
+
+6. Sustainability:-
+-> Set goals
+-> Use resource fully
+-> Use new, more efficient hardware and software
+-> Store , move and delete in smart way
+Use only what you need , recycle resources
+
+======================
+Service model of Cloud
+======================
+.
+.
+======================
+
+====================================
+IAM (Identity and Access Management)
+====================================
+-> It is a service provided by AWS which helps easy management of your AWS account.
+-> It can help you to control who can access which AWS resource and what they can do with them.
+
+IAM User:-
+----------
+-> An IAM User is an identity for an individual to access an AWS account (Authentication).
+-> It has long term credentials (Example: Username, Password and access key).
+-> Max no. of users is 5000.
+
+IAM Policies:-
+--------------
+-> It is a set of permissions which can authorize a user, group and roles, to perform some action in AWS account.
+-> There are Manage policies such as Aws manage and customer manage.
+-> Also there is inline Policies.
+	(Custom Policy for One Individual)
+-> Policies can be attached with users, groups and roles.
+
+Types Of Policies in IAM:-
+--------------------------
+1. Identity Base Policy:-
+-> These policies are attached to IAM identities such as user, group and role.
+(Custom manage policy, AWS manage policy, Inline policy)
+
+2. Resource based policy:-
+-> These policies are attached to AWS resources.
+
+3. Permission boundary:-
+-> It is a Feature for setting maximum permission or role can have.
+
+4. Service Control Policies (SCP used in AWS authorization):
+-> It is applied to AWS account not to users.
+-> It restrict services or account even if IAM allows it.
+
+5. Session Policies:-
+-> These are the temporary permission when you assume a role
+
+Policy Evolution Logic:-
+-------------------------
+
+Starting with Default			Is there any Explicit Deny?		If Deny is not there		is there any explicit allow?
+    Deny			=> 		||			=>				=> 			||
+					Result = Deny									Result=allow
+
+IAM Group:-
+-----------
+-> A group is collection of IAM Users.
+-> It can be Use to manage multiple users easily.
+-> One User can be the part of up to 10 groups.
+-> Max no. of group 300.
+-> Per group we can only gave 1 inline policies, managing policy up to 10.
+
+IAM Role:-
+----------
+-> It is an temporary identity with attach policies for a time period.
+-> AWS Resource Communication.
+
+================
+AWS Organization
+================
+-> A tool by AWS to manage multiple AWS accounts from one place. It helps you organize, secure, control access, share resources, and manage billing easily.
+->Key Features
+
+=========================
+Simple Storage Service S3
+=========================
+-> AWS S3 highly scalable, durable and secure object storage which is used to store, retrieve and share any amount of data.
+-> S3 is an independent(no need any help of other service) service.
+-> It is an object oriented storage service.
+-> Any kind of data can be uploaded to S3
+-> Once a data or files uploaded then it is called commonly object.
+-> To store object you have to create buckets.
+-> It is a container space used to store the object.
+-> Each bucket can be created in different regions.
+-> Default 100 buckets, if needed more request to AWS.
+-> Each buckets have unlimited storage capacity.
+
+S3 Bucket Naming Conversion:-
+-----------------------------
+-> Bucket names must be 3 to 63 characters and unique within the global namespace.
+-> Bucket names must also begin and end with a letter or number. 
+-> Valid characters are a-z, 0-9, periods (.), and hyphens (-) (but cannot start with . -).                
+-> Capital letters are not allowed only small letters.
+-> No Successive space.
+-> Cannot use any Ip addresses.
+
+-------------9-Jul-2025-------------
+-------------10-Jul-2025------------
+-------------11-Jul-2025------------
+
+-------------14-Jul-2025------------
+
+Encryption:-
+------------
+-> It is the method to convert readable(Plain text) format to unreadable(Cipher text) format.
+
+S3 Bucket Encryption:-
+	-> By default all the S3 buckets are encrypted by server side encryption method.	
+	-> For this encryption, encryption and decryption keys are generated and managed by AMAZON S3.
+CSE (Client Side Encryption) Encryption:-
+	-> It is completely client decision.
+	-> It allows you to encrypt data before uploading into S3.
+	-> After CSE when you upload the file S3 will be encrypting the file once again as an additional layer of security.
+	-> By using key management keys(KMS) you can add an additional layer of security for the object by internet.
+	-> It helps to prevent unauthorized users from reading your objects.
+
+============================
+KMS (Key Management Service)
+============================
+-> It is a service provided by AWS which help to create and manage multiple keys for various encryption and decryption purpose access AWS service.
+-> Generally two types of keys are available.
+1. Asymmetric
+2. Symmetric
+
+1. Asymmetric:-
+-> Here 2 different Keys will be available, one for encryption another for decryption.
+-> This is more costly and more secure than symmetric.
+
+2. Symmetric:-
+-> There will be only one key for encryption and decryption.
+-> It is much costlier comparing to asymmetric.
+
+-> We can add externally purchase keys to KMS, but that is not recommended by AWS.
+-> By default all the KMS keys are regional and will be only available on choose regions.
+-> Multi regional keys can be created but this are much costlier.
+
+===========
+Replication
+===========
+-> It is a process of creating copies of object from one bucket to another bucket automatically.
+-> It can provide addition security on a object by storing a backup in an another bucket.
+-> We can be useful high availability on your object.
+-> Replication can be done in same region and in different region, also same account and another account
+1. Same Region Replication (SRR):-
+2. Cross Region Replication (CRR)
+
+Same Region Replication (SRR):-
+-> Here source bucket and destination bucket will be in same region.
+
+Cross Region Replication (CRR)
+-> Here source bucket and destination bucket will be in different region.
+
+-> Replication is useful data backup and disaster recovery.
+-> It can be use for latency optimization.
+
+Latency => (If your user is in India and your AWS server is in USA, the data has to travel far → high latency, If your server is in Mumbai region (ap-south-1) and user is also in India → low latency).
+
+=====================
+Transfer Acceleration
+=====================
+-> It is the feature of S3 that speed a uploading and downloading speed into or from an S3 bucket.
+-> It gives AWS edge location server as a private network.
+
+Work Flow of Transfer Acceleration:-
+1. Once file is Uploaded data is transferred into nearest AWS edge location as a primary step.
+2. From edge location server the data router into the S3 bucket through Amazons internals high speed networks.
+
+-> It helps to reduce latency of uploading and downloading.
+Example:-
+      Data Accessing from India to any S3 bucket which is geographically very distance from India(Canada, USA, Spain etc..).
+
+-> It can be used upload large file from client located far from your S3 bucket region.
+-> It can be used for the application which needs faster file access global.
+-> Transfer acceleration provides performance for globally distributed users.
+-> It will cost additional charges according to data and location.
+-> It will be using only the speed is mandatory.
+
+===========
+Object Lock
+===========
+-> It is a feature of S3 which can help to prevent objects from being deleted or overwritten.
+-> It can be over a fixed time or for all time.
+-> Object lock provide 2 security modes 
+1.GOVERNENCE Mode
+2.COMPLAINS Mode
+
+Governance:- 
+-> Users with specific IAM permission can be delete or overwrite the protected object during the retention period.
+
+Complains:-  
+-> No users can overwrite or delete protected objects during retention period not even root users.
+
+===============
+AWS Snow Family
+===============
+-> The AWS Snow Family is a set of physical devices and services designed for data migration, edge computing, and storage in environments with limited or no internet connectivity.
+
+Key Devices:-
+-------------
+-> Snowcone – Smallest, portable device (8 TB storage), used for edge computing and small data transfers.
+-> Snowball Edge – Mid-sized device (up to 80 TB), used for large-scale data migration and edge computing (Storage or Compute optimized).
+-> Snowmobile – A massive data transfer service (up to 100 PB) using a shipping container, suitable for data center migration.
+
+Use Cases:-
+-----------
+-> Large-scale data transfer to AWS when internet is slow or costly.
+-> Edge computing in remote locations.
+-> Disaster recovery and data collection in harsh environments.
+
+Benefits:-
+----------
+-> Secure (encryption enabled).
+-> Fast offline data transfer.
+-> Reliable for remote/edge workloads.
+
+===========================
+Simple Storage Service (S3)
+===========================
+
+-> Storage class in AWS refers to different types of storage options offered by Amazon S3 that help manage your data based on how often you need to access it, how long you want to store it, and how much you want to spend.
+-> It is designed based on usage, cost, performance, and data access frequency.
+-> Storage classes help optimize cost by storing data according to how frequently it is accessed.
+-> There are mainly three categories based on access pattern:
+-> Frequently Accessed (Hot Storage) – For data that you use often. Example: Amazon S3 Standard.
+-> Infrequently Accessed (Cool Storage) – For data you need less often, but still need quick access when required. Example: S3 Standard-IA.
+-> Archived Storage – For old data you rarely access. Example: S3 Glacier and Glacier Deep Archive.
+-> Each class offers different levels of availability, durability, and retrieval time, which helps balance performance and cost.
+-> You can choose or change storage class manually or automatically using S3 Lifecycle Policies.
+-> So in short, AWS storage class is a smart way to store data efficiently by choosing the right type of storage depending on how often you use that data, how secure it should be, and how much you're willing to pay.
+
+					Storage Classes
+	---------------------------------------------------------------------------------
+	|					|					|
+ Frequent Tier				Infrequent Tier				Archive Tier
+	|					|					|
+  ---------------------------------------------------------------------------------------------------------------
+  |		|			|		|			|		|		|
+Standard     Reduce		 Standard IA	  One Zone IA		    Glacier	     Glacier	     Glacier
+	     Redundant							    Instant	     Flexible	     Deep
+	     Storage							    Retrieval	     Retrieval	     Achieve
+
+1. Frequent Tier:-
+a. Standard:
+-> This is the default storage class.
+-> Frequently accessed data.
+-> Milliseconds access.
+-> >=3Az (Availability Zone).
+-> Cost Effective.
+-> Durability is 99.11111111111%.
+-> Availability.
+
+b. S3 Intelligent Tiering:
+-> It helps to find unknown or change in access patter of S3 object.
+-> Milliseconds access.
+-> >=3Az (Availability Zone).
+-> Durability is 99.9% to 99.99%.
+-> Minimum storage duration 30 to 90 days for infrequent tiers.
+
+2. Infrequent Tier:-
+a. Standard IA:
+-> Infrequently accessed data.
+-> Milliseconds access.
+-> >=3Az.
+-> Retrieval fee is per GB.
+-> Minimum 30days.
+-> Minimum size 128kb.
+-> Durability is 99.99999999999%.
+-> Availability 99.9%.
+
+b. One Zone IA:
+-> Milliseconds access.
+-> =1Az.
+-> Retrieval fee per GB.
+-> Minimum 30days.
+-> Minimum size 128kb.
+-> Durability is 99.99999999999%.
+-> Availability 99.5%.
+
+3. Archive Tier:-
+a. Glacier instant Retrieval:
+-> Milliseconds access.
+-> >=3Az.
+-> Retrieval fee is per GB.
+-> Minimum 90 days.
+-> Minimum size 128kb.
+-> Durability is 99.99999999999%.
+-> Availability 99.9%.
+-> Object that need achieve and fast access can be store inside glacier instant retrieval.
+
+b. Glacier Flexible Retrieval:
+-> Accessing time from minutes to hours
+-> >=3Az.
+-> Retrieval fee is per GB.
+-> Minimum 90 days.
+-> Minimum size 40kb.
+-> Durability is 99.99999999999%.
+-> Availability 99.99%.
+
+c. Glacier Deep Achieve:
+-> Accessing time hours (within 12 hours)
+-> >=3Az.
+-> Retrieval fee is per GB.
+-> Minimum 180 days.
+-> Minimum size 40kb.
+-> Durability is 99.99999999999%.
+-> Availability 99.99%.
+
+Time Period:-
+-------------
+> D-0-> Standard
+> D-30-> Standard IA
+> D-60-> Intelligent tier
+> D-90-> One Zone IA
+> D-180-> Glacier Flexible
+> D-220-> Deep Achieve.
+
+===========================
+VPC - Virtual Private Cloud
+===========================
+-> These are logically isolated networks.
+-> It is region specific.
+
+Components:-
+------------
+Subnet:
+------
+-> dividing larger network into smaller.
+-> Public and private networks can be created.
+-> it is availability zone specific.
+-> max. subnet can be created 
+
+CIDR Blocks (Classless Inter-Domain Routing):
+---------------------------------------------
+-> It determines the maximum number of ip addresses that can used in a VPC/Subnet.
+-> Maximum bit 32, there will be 256 ips that we can create server
+-> in 16 CIDR we can create 32-16= 2^16 is 65536
+
+Route Table:
+------------
+-> It determines how the traffic should move within VPC and external networks.
+-> Subnets have to be associated with route table.
+-> With every VPC a default route table will be created.
+
+Internet Gateway:
+-----------------
+-> These component of VPC establish communication between resources in VPC with Internet
+-> Only 1 VPC with 1 IGW only
+
+
+NAT Gateway (Network Address Translation):
+------------------------------------------
+-> It enables instance within a private subnet to connect to the internet or other services.
+
+NACLs (Network access control lists):
+------------------------------------
+->That determines the traffic that is allowed or denied to and from the subnets.
+Security Groups: SR act as a firewall that controls inbound and outbound traffic to resources within a VPC.
+
+Bash and Host:
+--------------
+-> Private instances cannot be access from outside by default.
+-> Private servers doesn't have internet connection or public Ip.
+-> Bash and Host is the process of connecting or accessing private instance from another public instance in the same VPC.
+-> To do bash and host private server should have SSH protocol and keypair.
+
+Additional components:-
+-----------------------
+VPC Peering:
+------------ 
+-> Connection of two or more VPC in same account or in different account.
+
+NAT Gateway:
+------------
+->It enables instance within a private subnets to connect to the internet or other services.
+
+VPC Endpoints:
+--------------
+-> It enables instances within the VPC to access AWS services such as S3, Dynamo DB without using Internet.
+
+VPN Connections:
+----------------
+-> It provides secure connection between the VPC and an on-premise data center, allowing access to resources in the AWS
+
+NAT instance:-
+------------
+-> It is an Ec2 instance configure to perform NAT
+-> Nat will be available as an software
+
+Communication between NAT Gateway and instance:-
+------------------------------------------------
+Nat Gateway:
+------------
+-> This an AWS manage service 
+-> It will scale automatically
+-> It not use security group
+-> It uses elastic Ip
+-> It will deploy within a avail zone
+-> compatible high charge than Nat instances
+
+Instance:-
+----------
+-> It is managed by admin
+-> It will scale only according to the instance capacity
+-> Will be using Network Interface Card (EMI)
+-> No Elastic Ip needed instance public Ip is utilize
+-> Deploy with in a subnet
+-> very cheaper compare to NAT gateway
+-> Only instance charges are applicable
+
+Gateway Endpoints:-
+-------------------
+-> It will help to connect your VPC resources privately to AWs s3 and DynamoDB
+-> It only support s3 and DynamoDB
+-> It is free of cost
+-> Route table in VPC are used
+-> It is not using internet gateway or Nat gateway
+-> Traffic routed within AWS private network
+-> Security groups cannot be attached 
+-> High throughput for s3 and dynamo dB
+
+Interface Endpoints:-
+---------------------
+-> It is similar to gateway endpoints
+-> It supports almost every AWS services including s3 and dynamo dB
+-> It allow communication from on-premise
+-> It will access from other regions using VPC peering or transit gateway
+-> It is not using route tables
+-> It uses a dedicated component called Elastic Network Interface (ENI)
+-> It is deployed inside a subnet
+-> It will use security groups
+-> The cost is based on per hour + data process
+-> It will use domain name
+
+Comparison B/w NACL and Security Group:-
+----------------------------------------
+Security Groups:-
+-----------------
+-> It is the instance level firewall 
+-> It is stateful (outbound traffic are automatically allow)
+-> Inbound and outbound rules can be assign
+-> All rules are evaluated no priority numbers
+-> Maximum 60 rules can be added
+-> Same security group can be attached with multiple instances
+-> One instance can have multiple security groups also
+-> Maximum no. of security groups per region is 2500
+-> There is no deny only allow
+
+NACL:-
+------
+-> It is a subnet level firewall
+-> All the resources inside the subnet can be protected
+-> It is stateless because inbound and outbound has to be mention
+-> It can allow and deny the property
+-> It works based on priority numbers and the numbers start from 1 to 32,767
+-> The lower the number priority will be high
+-> Maximum 40 rules can be added
+-> One NACL can be attach with multiple subnets
+-> But one subnet can be attach with one NACL at a time
+-> Maximum no. of NACL in VPC is 200
+
+Reserved IP's in VPC:-
+----------------------
+-> 1st Ip n/w address
+-> 2nd VPC router address it is use for the subnet routing
+-> 3rd Ip reserved for DNS server
+-> 4th Ip reserved for future purpose
+-> Last Ip broadcast Ip
+
+==============
+Lifecycle Rule
+==============
+-> In S3 lifecycle rule is used to automatically manage the lifecycle of objects in the bucket.
+-> By defining rules it helps to reduce the cost.
+-> Generally lifecycle rules can be used for 2 purposes 
+1. Transition of Object between Multiple storage classes
+2. Emptying bucket or deleting large number of objects.
+
+======================================
+Ec2-Serial Connect - No need key, port
+======================================
+-> It is a feature of AWS ec2 for troubleshooting your ec2 instances.
+-> It's connect your instance using serial port directly, just like plugging a physical monitor and keyboard into a physical server.
+-> It's gives you a low level or direct access to your instance bypassing the network issue.
+-> It will work when ssh keys are misconfigured or security groups or NACL's blocking ssh or RDP protocol.
+-> It will help to connect even network interface is broken.
+
+==================
+AWS EC2 Networking
+==================
+ENI (Elastic Network Interface):
+--------------------------------
+-> A virtual network card attached to an EC2 instance. It can have private IPs, security groups, etc.
+-> It is a logical network interface card (NIC).
+-> It is a component of EC2 Instance for network connectivity.
+-> It includes:-
+	> private Ip
+	> Secondary private Ips 
+	> One or more IPv6 addresses
+	> One or more security groups
+	> Mac address
+Types of ENI:-
+1. Primary ENI:
+-> It is auto assign ENI by launching an instance (It cannot be detach).
+2. Secondary ENI:
+-> These are the manually created ENI's that can attach and detach anytime.
+
+EIP (Elastic IP):
+-----------------
+->A static public IPv4 address that you can attach to an ENI or EC2 instance.
+
+Private IP:
+-----------
+-> Internal IP address within your VPC subnet.
+
+Public IP:
+----------
+-> Internet-accessible IP, can be auto-assigned or attached as Elastic IP.
+
+===========================
+EBS - Elastic Block Storage
+===========================
+-> These are the virtual hard drive for your ec2 instances.
+-> It is a block level storage device.
+-> EBS provides persistent storage for your ec2-instances.
+-> EBS volumes are availability zone specific.
+-> Even the connected instance is stopped/terminated 
+-> The size of the volume can be increased at any time.
+-> The size cannot be decreased
+-> The backups for EBS volume can be created and stored inside S3 and it is called snapshots
+-> By default it is not encrypted but it can be encrypted using KMS.
+-> Different types of volume are available depending on performance and cost.
+
+AWS EBS VOLUME TYPES:-
+----------------------
+1. gp3  - General Purpose SSD (latest version)
+2. gp2  - General Purpose SSD (older version)
+3. io1  - Provisioned IOPS SSD
+4. io2  - Advanced Provisioned IOPS SSD
+5. sc1  - Cold HDD (lowest cost)
+6. st1  - Throughput Optimized HDD
+7. Magnetic (standard)
+
+1.gp3 (General Purpose SSD - Latest):
+-> Most commonly used and cost-effective SSD.
+-> Ideal for: boot volumes, general workloads, development, and testing.
+-> Performance:
+	> Baseline: 3,000 IOPS (independent of size)
+	> Can scale up to 16,000 IOPS and 1,000 MB/s throughput.
+-> You can increase IOPS and throughput separately without increasing storage size.
+Example: Web servers, small databases, dev/test environments.
+
+Example:
+If you create a 100GB gp3 volume, you can still increase IOPS from 3,000 to 10,000 without increasing size.
+
+2.gp2 (General Purpose SSD - Older):
+-> Older generation of general-purpose SSD.
+-> Performance increases with volume size:
+	> 3 IOPS per GB (e.g., 100GB = 300 IOPS).
+	> Maximum up to 16,000 IOPS.
+-> Example: Boot volume for EC2 or general workloads.
+-> AWS recommends using **gp3** instead of gp2.
+Example:
+A 500GB gp2 volume → 500 × 3 = 1,500 IOPS
+
+3.io1 (Provisioned IOPS SSD):
+-> Designed for high-performance workloads (IOPS-intensive).
+-> You can **manually provision IOPS** (up to 64,000 IOPS per volume).
+-> Ideal for: databases like Oracle, MySQL, PostgreSQL.
+-> More expensive than gp3/gp2.
+Example:
+If you run a production database needing 10,000 IOPS, create a 100GB io1 volume with 10,000 IOPS.
+
+4.io2 (Provisioned IOPS SSD - Advanced):
+-> Latest version of io1 with **higher durability (99.999%)** and **better performance**.
+-> Supports up to 256,000 IOPS (with io2 Block Express).
+-> Ideal for mission-critical enterprise databases.
+-> Higher cost but extremely reliable.
+Example:
+For an SAP HANA database that requires ultra-low latency and 50,000 IOPS → use io2 volume.
+
+5.st1 (Throughput Optimized HDD):
+-> HDD (Hard Disk Drive) type.
+-> Used for large, sequential data workloads (throughput-optimized).
+-> Not good for random read/write (like databases).
+-> Performance:
+	> Max throughput: 500 MB/s
+-> Ideal for: big data, data warehouse, log processing.
+Example:
+For a large data processing job (e.g., analyzing 10TB logs daily) → use st1.
+
+6.sc1 (Cold HDD):
+-> Lowest cost HDD volume type.
+-> Used for **infrequent access** and **archive data**.
+-> Lowest throughput and performance.
+-> Ideal for: backups, infrequently used data.
+Example:
+If you need to store system backups monthly that you rarely access → use sc1.
+
+===========
+FILE SYSTEM
+===========
+-> It is the method or structure to store data in an OS
+-> According to file system OS store, organize and manage storage devices such as HDD's, SDD's, USB's driver and other virtual disk's
+Example:- 
+In Windows:
+> NTFS - Next technology file system
+> REFS - Resistant file system
+> FAT32 - File allocation table 32 bit.
+	       
+NTFS:
+-----
+-> This is the modern file system in windows.
+-> The root volumes will be NTFS
+-> It support file permissions, file compression, encryption and reliability.
+-> Commonly used for large files and volumes.
+
+REFS:
+-----
+-> It wont use as root volume.
+-> Mainly used for extra disk that used for data storage.
+-> It is designed for fault tolerance and data integrity.
+
+FAT32:
+------
+-> It is an older file system that developed by Microsoft.
+-> It is mainly used for USB drives and Memory cards.
+-> It is compactable with almost every OS.
+-> Max. size of file is 4GB.
+-> No file permission or encryption.
+-> Not suitable for large files for OS.
+
+EXFAT - Extended File allocation table:
+---------------------------------------
+-> It is improved version developed by Microsoft.
+-> Max. data size is 16exabyte.
+-> It is mainly designed for flash drives and SD cards.
+
+-> IO1 and IO2 can connect with 16 regions but instance should be in same availability zone.
+-> There is no default encryption.
+-> There is no multi attach.
+-> if we using Io1 and I02 multi attach is there only in same io zone.
+-> It can only increase size but cannot reduce.
+
+========================================
+RDS (Amazon Relational Database Service)
+========================================
+Deployment Options of RDS:-
+---------------------------
+-> This option specify the availability, durability of your database.
+-> RDS provide mainly 3 deployment options
+1. Single Availability Zone DB.
+> It create only one DB in specified availability zone.
+> Low availability.
+> No data redundance.
+
+2. Multi Availability zone DB Instance.
+> Here one primary DB instance and standby DB instance are getting created, each instance occupied in different availability zone.
+> Data redundancy across availability zone.
+
+3. Multi Az cluster DB Deployment
+> Here one primary instance and 2 standby instance will be available.
+> Each instances residing in different Az.
+> Standby instances are readable.
+> It increase read capacity and reduce write labels.
+
+==============
+Cloud Watching
+==============	
+ScaleIn:
+-> If it 50 then it be decrease the instance
+
+ScaleOut:
+-> 1 No. of instance increase
+
+Horizontal - Upgrading
+Vertical -
+
+-> It is a internal monitoring service from CloudWatch
+-> It can be use to track matrix, collection of log files, setting up alarm and automated respond to AWS resources and application.
+-> It can use for ec2 instance monitoring, lambda monitoring and automating scaling.
+
+============
+Auto Scaling
+============
+Scaling:-
+---------
+-> Increasing or decreasing the capacity from existing value is called scaling.
+
+Auto Scaling:
+-> AWS auto scaling monitors your application and automatically adjust capacity to maintain steady, predictable performance at the lowest cost.
+
+Vertical Scaling:
+-> It refers to adding more resources to your servers as demand.
+
+Horizontal Scaling:
+-> It refers to adding additional nodes or machines to your infrastructure to handle new demands or workloads.
+
+Auto Scaling Group:-
+--------------------
+Creating a logical group for spin up and spin down instances is called auto scaling group.
+Components of Auto Scaling Group:-
+1. Min: It ensures that your group never goes down below this size.
+2. Max: Never goes beyond the size.
+3. Desired: count on current time.
+
+Scaling Policy:-
+----------------
+1. Manual Scaling:
+-> It is the most basic way to scale your resources, where you specify only the change in the maximum, minimum and desired capacity.
+
+2. Schedule Scaling:
+-> Scaling by schedule means that scaling actions are performed automatically as a function of time and date.
+
+3. Dynamic Scaling / Scale based on demand:
+-> Based on the workload getting automatically it start to spin up multiple instances without any manual intervention.
+
+4. Predictive Scaling:
+-> Based on past week, month record it will analyze traffic flow and it will increase sufficient instances for particular time.
+
+======================================
+LAUNCH TEMPLATE & LAUNCH CONFIGURATION
+======================================
+1. Launch Configuration:
+-> It is a template or image of EC2 instances, whenever creating new instance in ASG it will create instances based on that.
+Ex: AMI
+
+2. Launch Template:
+-> It is a new capacity that enables a new way to templatize your launch request, based on the behavior of launch template it will spin up instances.
+
+=============
+Load Balancer
+=============
+-> Load Balancer is a virtual machine that balances your web application load that could be HTTP or HTTPS traffic that you are getting in.
+-> It balances a load of multiple web servers so that no web server gets overwhelmed.
+
+Types:-
+-------
+1. Application Load Balancer.:
+-> It is operated at Layer 7 (Application Layer) of the OSI model.
+-> It uses HTTP & HTTPS Protocol.
+-> Can attach security groups
+-> It will support multiple listeners rule.
+-> It identifies the traffic and it send specific request to the specific servers.
+-> It uses round robin, weighted algorithms.
+-> It can be integrated with web application firewall.
+-> It is path based routing.
+-> It supports micro services and container based applications (ECS,EKS)
+
+2. Network Load Balancer:
+-> It is operated at 4th layer (Transport Layer) of OSI Model
+-> It uses TCP/UDP/TLS Protocol
+-> Ultra performance (it is best suited for when high performance is required)
+-> It can handle millions of request per second.
+-> Cannot attach security group
+-> It will not support listeners rule
+-> It use Flow hash algorithm
+-> Port based routing
+
+3. Gateway Load Balancer:
+-> It is operated at 3rd layer (Network Layer) of OSI Model
+-> It uses a Geneva Protocol
+-> GLB is used to distribute the traffic between various Gateway
+-> Cannot attach security group
+-> Cannot add listeners rule
+-> It is mainly used for connecting 3rd party security systems
+-> It can route traffic through firewall clusters
+
+4. Classic Load Balancer:
+-> It working on Layer 4 and 7
+-> It can be use for basic LB for http,https or TCP traffics
+-> Limited features 
+-> Not recommended by AWS
+
+COMPONENTS OF A LOAD BALANCER:-
+-------------------------------
+Targets: 
+-> The Ec2 instances belongs to target groups.
+Target Groups:
+-> It is a logical group of EC2 instances to distribute the traffic.
+Listeners:
+-> A listeners is a process that checks for connection requests, using the protocol and port that you configure.
+-> A rule that you define for a listener determine how the load balancer routes requests to the targets in one or more target
+
+LOAD BALANCER STATE:-
+---------------------
+1. Provisioning - Creating
+2. Active - LB routing to VM
+3. Active impaired - LB is active but no enough resources to route the traffic.
+4. Failed - Fails to create LB.
+
+LOAD BALANCER HEALTH CHECK:-
+----------------------------
+-> Checking the instances is capable enough to accept the traffic from LB or not.
+-> Every instances will be undergo, if the health check is passed then only the Load Balancer route the traffic to the particular instances.
+
+===============
+Cloud Formation
+===============
+-> Cloud formation in an AWS service that helps you build and manage AWS resources automatically using (Yaml or Json) code . instead of clicking everything manually in the AWS console.
+
+Benefits:-
+----------
+-> Infrastructure as code
+-> version controlled templates
+-> automated and repeatable deployment
+-> cost and resource management
+-> easy rollback
+-> huge time saving over manual work
+-> can delete all resources at once
+-> can be used cross account and cross region
+
+========
+SNAPSHOT
+========
+-> It is a backup of EBS volume
+-> It is the point in time copy of the data inside EBS volume
+-> These are incriminated backup
+-> The backup data store inside AWS s3 which is completely managed by AWS not user.
+-> It is used for backup and disaster recovery.
+-> It is also used to replicate or migrate data from one availability zone to other availability zone and region.
+-> By creating AMI snapshots also getting created
+-> Snapshot can be locked in governance or complains mode, can prevent the accidental deletion.
+-> Snapshot can be shared with different AWS account.
+
+==========================
+AMI (Amazon Machine Image)
+==========================
+-> It is a backup of your Ec2 Instance.
+-> It can create AMI from an existing Ec2 instance or it can be configure manually.
+-> It is a pre configured Image used to launch Ec2 instances.
+-> It contains OS, other software's and launch configurations.
+-> It can be used when you want to launch your custom Ec2 instance.
+-> The backup AMI's stores inside S3.
+-> It can shared publicly or privately
+-> When an AMI created from an existent instance AWI automatically create 1 or more EBS snapshot of instance volume.
+-> When we launch an Ec2 instance from that AMI it uses the snapshot to create the volume.
+
+-> Snapshot is backup of volume - AMI is complete machine image (will be using snapshots)
+
+-> There are 2 types of instances
+	1. EBS backed storage instances
+	2. Instance store back instances
+1. EBS backed instances
+	> The root volume of EC2 instance is stored as an EBS volume not the local storage
+2. Instance store back instances
+	> Where the root volume comes from a instance store which is a temporary physical storage.
+
+EBS backed AMI's:-
+----------------
+-> When we launch an instance AWS creates a new EBS volume from the snapshot associated with the AMI.
+-> This EBS volume becomes a route volume of a EC2 instance.
+-> When the instance stops the EBS volume persist data.
+-> When you terminate the instance you can choose whether the root volume should be deleted or not.
+
+Instance Store Back AMI:-
+-----------------------
+-> The root device created from an instance stored backed AMI which is stored as template in S3.
+-> If is stopped or terminated old data is lost.
+-> It cannot be stopped or restart only reboot and termination.
+-> Root volume size and configuration fixed in the AMI.
+
+Different types of Servers:-
+----------------------------
+1. Web Servers: Apache, Niginix & Tomcat
+2. Application Servers: Tomcat, Jboss & Glassfish
+3. DNS Server: Route53
+4. Mail Server: Google mail
+5. FTP Server
+6. DHCP Server
+7. Database Server: My SQL, Mango DB, MariaDB
+

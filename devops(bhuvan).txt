@@ -1,0 +1,571 @@
+-> /etc =>is used to store the all file system are configured
+-> /tmp => temporary files cleard on reboot
+-> /usr => user application ,binaries ,libreries ,documentatioion
+-> /lib => shared library
+-> /
+
+
+
+
+2 types of users
+
+1. system user
+2. manual users
+
+
+
+cli command texture --> cli cmnd flag data
+
+
+
+
+Terraform
+----------
+
+
+https://github.com/bhuvan-raj/Terraform-Zero-to-Hero
+
+
+
+
+terraform file execution
+
+1.terraform init -> initializing
+2.terraform validate ->check the synaax and find the error
+3.terraform fmt(format) -> find the unwanted space error only.this correct indentation erron only
+4.terraform plan -> creates an execution plan what is created what is deleted
+5.terraform apply -> just like terraform plan after that ask confirmation if give value yes then run
+6.terraform destroy ->
+
+
+directly execute
+
+-> terraform apply --auto-approve
+
+
+delete created infrastructure
+
+-> terraform destroy
+
+directly deleting
+-> terraform destroy --auto-approve
+
+
+
+---------------------------------------------------------
+
+
+
+
+26/09/2025
+
+-----------
+
+
+
+
+terraform import (very very important)
+
+
+
+lifecycle metaargument (important)
+
+
+
+aws s3 permannt mounting
+
+
+
+
+--------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------
+
+
+kubernetts
+
+
+
+?? why k8s follows cluster architecture ??
+-> kubernets is an open source sontainer orchestration platform that automates the
+deployment,scaling and mangement of containerized application
+
+
+
+
+- > also known as k8s
+
+- > kubernets follows cluster architecture
+
+- > a kubernets cluster is madeup of two main parts
+
+    1.controll plane(master node)
+
+      -- > this is the brain of kuubernetes cluster,it manges everything
+
+      -- > scheduling workloads
+
+      -- > handling scaling and healing
+
+    2.Data plane (worker nodes)
+
+     -- > running application workloads (pods)
+
+     -- > handling networking between containers
+
+     --> repoding node and pod status
+
+
+
+Kubernetes distributions
+
+
+
+
+-> it is a packeged or customized version of k8s provided by a vendor or community
+
+-> it includes k8s itself plus additional tools,configuation and integrations to make deployement,
+mangament and update eaasier
+
+
+
+1.Cloud manged kubernets services (Kaas)
+
+ -> mater node is manged by vendors
+
+ -> A cloud manges kubenrnetes sevvice (kaas) is a kubernetes platform provided and manged by a
+cloud provider,meaning the controll plane are automatically manged by the cloud vendor
+
+-> the user just focus on deploying and runnig the applications ,while the provider take care of hard
+parts like
+   1.cluster setup 2.scalling 3.upgrades 4.security patches ..
+
+-> exapmple :Eks -aws,Aks-azure,gke(google k8s engine )-gcp,oke -oracle ,ibm cloud k8s service
+
+
+
+2.On-premises k8s distribution
+
+
+-> this distribution are design to run on your own data center or private infrastructre,instead of a
+public cloud
+
+
+-> you have full controll over the cluster setup , networking ,security and scalling but also full
+responsibilty for manging and maintaing it
+
+-> example :openshift -redhat,rancher kubernetes (rke) -rancher ,vmware tanzu -vmware,charmed
+k8s ,mirantais kubernetes
+
+
+3.Local/study k8s distribution
+
+
+-> local k8s distributions are lightweight version of k8s meant for learing ,testing on a persional
+computer or laptop -not for production
+
+
+-> example :minikube,kind(kubernetes in docker ),micro k8s,k3s
+
+
+
+
+28/10/2025
+CRI-> container runtime interface
+
+
+
+
+Control plane (Master Node) component
+
+-------------------------------
+
+kube-apiserver (API server)
+
+        -> it is act as front end for the kubernetes cluster .(beacuse when we give command it goes
+           through the api server )
+
+        -> it is act as the central communication hub .(becuase if componetes want to communicate
+           it goes through the api server )
+
+        -> All intractions go through the API server
+
+
+
+etcd
+
+        ->A highly availabe ,distributed ,consistent key -value store-- (basically a store location)
+
+        -> k8s uses etcd to store all cluster data,including the desired(the currently available state)
+            state of your applications configuration, and actual(what we want) state
+
+        -> its the single source of thruth for the cluster
+--pod->it is the smallest deployable unit in a k8s cluster and it actes as a wrapper around one or
+more containers.---
+
+
+Kube scheduler(Scheduler)
+
+         -> it watches for newly created pods with no assigned node
+
+         -> duty of scheduler to check the worker nodes for resources
+
+         -> scheduler duty to assign pod to appropriate worker node
+
+Kube controller manger
+
+         -> contiusly monitoring the desired stage and actual state
+
+         -> In Kubernetes, it is the duty of the Controller Manager to reconcile (tally) the actual state
+            of the cluster with the desired state.
+
+
+Cloud controller manager (optional)
+
+         -> only in cloud
+
+
+
+Worker node components
+
+-------------------------------
+
+Kublet
+
+         -> it is act as a agent on each node in the cluster
+
+         -> check the status of container and node
+
+         -> ensures containers are run in a pod
+
+         ->tells the status of pod (healthy or not) and to api server it is all saved in etcd
+
+         -> check the statues of node and go to api and saved in etcd and scheduler allows the pods
+
+Kube-Proxy
+
+         -> it is the duty of kube proxy facilitate the networking in the cluster
+
+         -> maintains the
+
+CRI(Container Runtime interface)
+        ->b
+        -> pulls image from the registry
+
+
+
+
+when execute kubectl api-version it will shows the list of resources that we can create in cluster
+
+
+
+kubectl apply -f filename or kubectl create -f (only used for creating file first tym)
+
+
+
+
+creating using command
+
+
+kubectl run my-nginx-pod --image nginx
+
+kubesctl get po/pod/pods ->list all pods
+
+kubesctl get po/pod/pods -w -> watching the pods status
+
+kubctl get replicaset/rs -> list all replicaset
+
+kubectl delete po pod_name -> delete pods name
+
+-> when we created just a pod and manually deleted ther is no self healing
+
+-> replicaset -- it is an object we can create in k8s--another object it facilitate self healing –
+        anreplicaset controller will be created---that cntroller look the desired number of pod is run
+        or not
+
+-> lables -- to iddentify the object uniquely (it should be a key value) or uniwue identifier –basically
+used to select pod --details fof pod
+
+-> selector – when a we want label we want selector
+fenebb
+kubectl get po -o wide ->
+
+It shows more detailed info about your pods, including:
+     • The Node each pod is running on
+    • The Pod IP address
+    • The Image used
+    • The Container status
+
+
+
+kubectl exec -it pod -- /bin/sh -> inside the pod
+
+
+
+
+Lifecycle of Pods (Pod Phases)
+
+A Kubernetes Pod's status is a composite field that describes its current state in the cluster. It's
+represented primarily by two key fields: status.phase and status.conditions.
+  Pod Phase (status.phase)
+The phase is a simple, high-level summary of where the Pod is in its lifecycle. It can be one of five
+values:
+
+* Pending - The Pod has been accepted by the Kubernetes system but one or more of its containers
+hasn't been created or run yet. This includes time spent waiting for networking, scheduling, and
+image pull time. |
+* Running - The Pod has been bound to a node, and all of the containers have been created. At least
+one container is still running, or is in the process of starting or restarting. |
+* Succeeded - All containers in the Pod have terminated successfully and won't be restarted. This is
+common for Job Pods. |
+* Failed - All containers in the Pod have terminated, and at least one container terminated in failure
+(i.e., it exited with a non-zero status code), and the Pod will not be restarted. |
+* Unknown - For some reason, the state of the Pod could not be obtained (e.g., the communication
+with the host node failed). |
+
+
+
+
+There are three primary Container States that define where a container is in its lifecycle:
+
+  Container States (Phases)
+1. ⏳ Waiting
+The container has been created by the Kubernetes system (Kubelet) but has not successfully started
+its main process yet. This is often a precursor to a problem.
+- Common Reasons
+
+- ContainerCreating - Resources are being set up on the node (a normal, temporary state). |
+* ErrImagePull / ImagePullBackOff - The image could not be downloaded from the registry. |
+* CrashLoopBackOff - The application in the container started but immediately crashed, and
+Kubernetes is waiting before retrying. |
+* PodInitializing - The container is waiting for Init Containers in the Pod to complete their setup
+tasks. |
+2. Running
+The container's entry point command has executed successfully, and the container process is
+actively running.
+ * This state means the application's process is alive.
+ * However, a container in the Running state may still not be ready to serve traffic if its Readiness
+Probe is failing.
+3. Terminated
+The container has stopped running, either because it completed its task or because it failed.
+Common Reasons
+- Completed -The container exited successfully with an exit code of 0 (expected for Job or Init
+Containers). |
+* Error -The container exited with a non-zero exit code (application failure). |
+* OOMKilled - The container was forcibly stopped by the system because it exceeded its memory
+limit.
+* Reason: - The container was terminated as part of a general Pod deletion, and no specific error
+reason was logged. |
+Netwworkpolicy –act as a firewall b/w pod
+
+
+1.first we stop communication between all pod using create a network policy
+2. and we create the network policy
+3.and the apply
+
+
+get api version – kubectl api-resuources
+
+
+
+
+probes
+
+-> probes are dignostic check in container
+
+-> importance of probes
+
+         -> automated healing
+         -> graceful gracing
+
+diffrent typeof prob
+
+         1.Liveness prob
+
+                  purpose: the liveness prob determine if your application is alive and healthy enough
+                  to continue running
+                  ->check container run or not
+
+         2.Readiness Probe
+                purpose:check if a container is ready to accept network
+
+
+         3.Startup Probe
+                 purpose:it specifically designed for applications that have a long and potentially
+                 unpredictibble startup time
+
+                  -> it used to stop liveness and readiness prob which means the startup prob is done
+                  then use liveness and readiness
+
+                  -> only works in one time in container
+
+
+
+---important---
+stateless applications
+
+-------------------------
+
+-> not changing according to user just like static website or not store anything between user and
+request
+
+
+-> we can only deploy statless appplication in deployment
+
+
+Kubernetes deployement
+
+--- to host statlesss application we use depolyemnet when apply deployement automaticallly
+deployement controller get activates
+
+-- deployment are created for stateless application
+
+    1. -- deployement dascilattes rollout and rollback
+
+
+depolyement controller
+
+functions
+
+
+-> reconciling ddesired and actual state
+
+-> creating and managing Replicasets
+
+-> orcheshrating Rollouts
+
+-> enabling rollbacks
+
+-> self healing
+
+-> scaling
+
+
+
+rolback and rollout
+
+revision means version
+
+
+rollout undo
+
+
+
+kubectl rollout -history deploy deployment_name(the name give to the metadata)-> to check
+revision
+-> when we roll back to previous version it will disappear and a new revison will creeate
+
+-> when we will create a 2 replicaset in veersion 1 and create replicaset to 4 in version and when
+we rolllback to version 1 it will be replicaset .when we change the revison the current revision
+replicaset will be grabage ccolledctor
+
+-> when we apply kubectl rollout -history deploy deployment_name(the name give to the
+metadata) it will go back only one previous revision
+
+->to specific revision rollback -->kubectl rollout undo deployment test-deployment --to-
+revision=1
+
+
+-> revision is given to replicaset
+
+
+kubectl rollout history deployment <deployment-name>
+
+
+
+--------------------------------------------------------
+
+Namespace
+
+
+
+
+Service (svc)
+
+-> it is an abstraction which is created to expose our applications the outside cluster
+
+
+
+diffrent type of services
+
+1.ClusterIP
+
+        -> default service in k8s
+        -> it axposses you application inside you cluster only,giving it a stable internal ip so other
+           pods can talk to it
+	-> when we not mention the service type defualtily creating the clusterip
+
+        features
+        ------------
+
+        ->internal only access
+        ->stable virtual ip(s
+        ->load balancing
+        -> dns support – kubedns/core dns gives it a name like
+           my-service<namespace>.vc.cluster.load
+------------------------------------------------
+-> caanot access the outside we need to intgrate
+-> only reachable from within the k8s cluster
+-> clusterip is a static virtual ip address
+->DNS resolution -convering domain name into a ip address
+-> clusterip also do internel loadbalacing
+
+ClusterIpservice
+      -> static ip address
+      -> tracking pods using the label
+
+
+
+
+
+
+
+
+2.Nodeport 
+
+
+ -> default range of nodeport 30000-32767
+
+ -> used for testing not for production
+
+
+
+
+
+
+
+
+
+in cloud k8s the master node is controlled by the cloud
+
+
+
+3.load balancer 
+
+
+
+
+
+4.Headless service 
+
+-> service without a cluster ip allows clients to interact directly with the individual pods that match a selector 
+
+-> it is for internal communication 
+
+-> to communicate with a particular port 
+
+-> for statefull applications   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
